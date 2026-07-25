@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import TaskList from "./TaskList";
 import WidgetHeader from "./WidgetHeader";
+import PropTypes from "prop-types";
 
 const WidgetBox = ({ tasks, setTasks }) => {
   const [newTaskInput, setNewTaskInput] = useState("");
@@ -90,6 +91,11 @@ const WidgetBox = ({ tasks, setTasks }) => {
       </div>
     </div>
   );
+};
+
+WidgetBox.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTasks: PropTypes.func.isRequired,
 };
 
 export default WidgetBox;
