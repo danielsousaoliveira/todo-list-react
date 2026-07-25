@@ -1,68 +1,68 @@
-import { useState, useRef } from "react";
-import TaskList from "./TaskList";
-import WidgetHeader from "./WidgetHeader";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
+import { useState, useRef } from 'react'
+import WidgetHeader from './WidgetHeader'
+import TaskList from './TaskList'
 
 const WidgetBox = ({ tasks, setTasks }) => {
-  const [newTaskInput, setNewTaskInput] = useState("");
-  const [isInputMode, setIsInputMode] = useState(false);
-  const [isDeleteMode, setIsDeleteMode] = useState(-1);
-  const inputRef = useRef(null);
+  const [newTaskInput, setNewTaskInput] = useState('')
+  const [isInputMode, setIsInputMode] = useState(false)
+  const [isDeleteMode, setIsDeleteMode] = useState(-1)
+  const inputRef = useRef(null)
 
   const toggleInputMode = (event) => {
     if (
-      event.target?.type !== "checkbox" &&
-      !event.target?.id?.includes("text") &&
-      !event.target?.parentElement?.id.includes("text")
+      event.target?.type !== 'checkbox' &&
+      !event.target?.id?.includes('text') &&
+      !event.target?.parentElement?.id.includes('text')
     ) {
-      setIsInputMode(!isInputMode);
+      setIsInputMode(!isInputMode)
       if (!isInputMode) {
-        setTimeout(() => inputRef.current?.focus(), 0);
+        setTimeout(() => inputRef.current?.focus(), 0)
       }
-    } else if (event.target?.id?.includes("text")) {
-      const number = parseInt(event.target.id.substring(4));
+    } else if (event.target?.id?.includes('text')) {
+      const number = parseInt(event.target.id.substring(4))
       if (isDeleteMode === number) {
-        setIsDeleteMode(-1);
+        setIsDeleteMode(-1)
       } else {
-        setIsDeleteMode(number);
+        setIsDeleteMode(number)
       }
     }
-  };
+  }
 
   const addTask = () => {
-    if (newTaskInput.trim() !== "") {
-      setTasks([...tasks, { text: newTaskInput, isDone: false }]);
-      setNewTaskInput("");
-      setIsInputMode(false);
+    if (newTaskInput.trim() !== '') {
+      setTasks([...tasks, { text: newTaskInput, isDone: false }])
+      setNewTaskInput('')
+      setIsInputMode(false)
     }
-  };
+  }
 
   const handleInputChange = (event) => {
-    setNewTaskInput(event.target.value);
-  };
+    setNewTaskInput(event.target.value)
+  }
 
   const handleInputKeyDown = (event) => {
     if (
-      event.key === "Enter" &&
+      event.key === 'Enter' &&
       inputRef.current &&
-      newTaskInput.trim() !== ""
+      newTaskInput.trim() !== ''
     ) {
-      addTask();
-    } else if (event.key === "Enter") {
-      setIsInputMode(false);
+      addTask()
+    } else if (event.key === 'Enter') {
+      setIsInputMode(false)
     }
-  };
+  }
 
   const handleOutsideClick = (event) => {
-    if (event.target?.id === "bg") {
-      if (inputRef?.current && newTaskInput.trim() !== "") {
-        addTask();
+    if (event.target?.id === 'bg') {
+      if (inputRef?.current && newTaskInput.trim() !== '') {
+        addTask()
       } else {
-        setIsInputMode(false);
-        setIsDeleteMode(-1);
+        setIsInputMode(false)
+        setIsDeleteMode(-1)
       }
     }
-  };
+  }
 
   return (
     <div
@@ -90,12 +90,12 @@ const WidgetBox = ({ tasks, setTasks }) => {
         ></TaskList>
       </div>
     </div>
-  );
-};
+  )
+}
 
 WidgetBox.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setTasks: PropTypes.func.isRequired,
-};
+  setTasks: PropTypes.func.isRequired
+}
 
-export default WidgetBox;
+export default WidgetBox

@@ -1,23 +1,23 @@
-import { TrashIcon } from "@heroicons/react/24/solid";
-import PropTypes from "prop-types";
+import { TrashIcon } from '@heroicons/react/24/solid'
+import PropTypes from 'prop-types'
 
 const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
   const handleDeleteTask = (index) => {
-    const updatedTasks = [...tasks];
-    updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
-  };
+    const updatedTasks = [...tasks]
+    updatedTasks.splice(index, 1)
+    setTasks(updatedTasks)
+  }
 
   const handleCompleteTask = (index) => {
     setTasks((previousTasks) => {
       return previousTasks.map((task, i) => {
         if (i === index) {
-          return { ...task, isDone: !task.isDone };
+          return { ...task, isDone: !task.isDone }
         }
-        return task;
-      });
-    });
-  };
+        return task
+      })
+    })
+  }
 
   return (
     <div key={index}>
@@ -28,16 +28,19 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
         >
           <input
             type="checkbox"
-            className="form-checkbox min-h-6 min-w-6 h-6 w-6 cursor-pointer appearance-none rounded-full border border-gray-900/20 transition-all  checked:bg-blue-500 hover:scale-110"
+            className="form-checkbox min-h-6 min-w-6 h-6 w-6 cursor-pointer appearance-none rounded-full border border-gray-900/20 transition-all checked:bg-blue-500 hover:scale-110"
             id="checkBox"
             checked={tasks[index].isDone}
-            onChange={() => handleCompleteTask(index)}
+            onChange={() => {
+              handleCompleteTask(index)
+            }}
+            onClick={(e) => e.stopPropagation()}
           />
         </label>
         <span
           id={`text${index}`}
           className={`ml-2 flex-grow ${
-            tasks[index].isDone ? "line-through" : ""
+            tasks[index].isDone ? 'line-through' : ''
           }`}
         >
           {tasks[index].text}
@@ -55,14 +58,14 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
       </li>
       <hr className="my-1 ml-10 border-t border-gray-300 border-dotted" />
     </div>
-  );
-};
+  )
+}
 
 Task.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   setTasks: PropTypes.func.isRequired,
   isDeleteMode: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-};
+  index: PropTypes.number.isRequired
+}
 
-export default Task;
+export default Task

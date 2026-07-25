@@ -1,5 +1,5 @@
-import Task from "./Task";
-import PropTypes from "prop-types";
+import Task from './Task'
+import PropTypes from 'prop-types'
 
 const TaskList = ({
   tasks,
@@ -10,7 +10,7 @@ const TaskList = ({
   newTaskInput,
   handleInputChange,
   handleInputKeyDown,
-  handleOutsideClick,
+  handleOutsideClick
 }) => {
   return (
     <div className="task-list-container max-h-[350px] overflow-y-auto">
@@ -49,8 +49,8 @@ const TaskList = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 TaskList.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -61,7 +61,7 @@ TaskList.propTypes = {
   newTaskInput: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleInputKeyDown: PropTypes.func.isRequired,
-  handleOutsideClick: PropTypes.func.isRequired,
-};
+  handleOutsideClick: PropTypes.func.isRequired
+}
 
-export default TaskList;
+export default TaskList

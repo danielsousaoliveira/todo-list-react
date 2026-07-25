@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { ListBulletIcon } from "@heroicons/react/24/solid";
+import PropTypes from 'prop-types'
+import { ListBulletIcon } from '@heroicons/react/24/solid'
 
 const Task = ({ tasks }) => {
   return (
@@ -15,11 +15,11 @@ const Task = ({ tasks }) => {
         <ListBulletIcon className=" relative w-12 h-8 stroke-black"></ListBulletIcon>
       </div>
     </div>
-  );
-};
+  )
+}
 
 Task.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
-export default Task;
+export default Task
