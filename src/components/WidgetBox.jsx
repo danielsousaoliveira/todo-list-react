@@ -1,14 +1,9 @@
 import { useState, useRef } from "react";
 import TaskList from "./TaskList";
 import WidgetHeader from "./WidgetHeader";
+import PropTypes from "prop-types";
 
-const WidgetBox = () => {
-  const [tasks, setTasks] = useState([
-    { text: "Mail packages", isDone: false },
-    { text: "Return library books", isDone: false },
-    { text: "Pickup food for birthday party", isDone: false },
-  ]);
-
+const WidgetBox = ({ tasks, setTasks }) => {
   const [newTaskInput, setNewTaskInput] = useState("");
   const [isInputMode, setIsInputMode] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(-1);
@@ -16,7 +11,7 @@ const WidgetBox = () => {
 
   const toggleInputMode = (event) => {
     if (
-      event.target?.type != "checkbox" &&
+      event.target?.type !== "checkbox" &&
       !event.target?.id?.includes("text") &&
       !event.target?.parentElement?.id.includes("text")
     ) {
@@ -26,7 +21,7 @@ const WidgetBox = () => {
       }
     } else if (event.target?.id?.includes("text")) {
       const number = parseInt(event.target.id.substring(4));
-      if (isDeleteMode == number) {
+      if (isDeleteMode === number) {
         setIsDeleteMode(-1);
       } else {
         setIsDeleteMode(number);
@@ -50,7 +45,7 @@ const WidgetBox = () => {
     if (
       event.key === "Enter" &&
       inputRef.current &&
-      newTaskInput.trim() != ""
+      newTaskInput.trim() !== ""
     ) {
       addTask();
     } else if (event.key === "Enter") {
@@ -59,8 +54,8 @@ const WidgetBox = () => {
   };
 
   const handleOutsideClick = (event) => {
-    if (event.target?.id == "bg") {
-      if (inputRef?.current && newTaskInput.trim() != "") {
+    if (event.target?.id === "bg") {
+      if (inputRef?.current && newTaskInput.trim() !== "") {
         addTask();
       } else {
         setIsInputMode(false);
@@ -96,6 +91,11 @@ const WidgetBox = () => {
       </div>
     </div>
   );
+};
+
+WidgetBox.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setTasks: PropTypes.func.isRequired,
 };
 
 export default WidgetBox;

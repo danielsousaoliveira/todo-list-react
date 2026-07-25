@@ -11,7 +11,7 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
   const handleCompleteTask = (index) => {
     setTasks((previousTasks) => {
       return previousTasks.map((task, i) => {
-        if (i == index) {
+        if (i === index) {
           return { ...task, isDone: !task.isDone };
         }
         return task;
@@ -30,6 +30,8 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
             type="checkbox"
             className="form-checkbox min-h-6 min-w-6 h-6 w-6 cursor-pointer appearance-none rounded-full border border-gray-900/20 transition-all  checked:bg-blue-500 hover:scale-110"
             id="checkBox"
+            checked={tasks[index].isDone}
+            onChange={() => handleCompleteTask(index)}
           />
         </label>
         <span
@@ -40,7 +42,7 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
         >
           {tasks[index].text}
         </span>
-        {isDeleteMode == index ? (
+        {isDeleteMode === index ? (
           <button
             className="min-w-6 max-w-6 text-gray-600"
             onClick={() => handleDeleteTask(index)}
