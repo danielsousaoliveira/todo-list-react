@@ -1,5 +1,9 @@
 # To-do List
 
+> **Archived 2026-08-10.** Learning project from 2024, kept for reference. Not maintained.
+>
+> This was a to-do list app built to learn React, Vite, and component-based UI patterns, later extended with Docker packaging and a GitHub Actions CI pipeline to practice deployment tooling. It taught state management, component composition, and a full containerized build/deploy workflow. With the current state of AI, a project like this can be regenerated from a single prompt in minutes, so maintaining it further isn't worth the effort.
+
 To-do list made using React and Vite. iOS inspiration theme.
 
 ## Installation
